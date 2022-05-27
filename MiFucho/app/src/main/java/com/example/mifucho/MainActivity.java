@@ -75,11 +75,33 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         }else {
             balon.setX(balon.getX()-(rotationSensorReading[0]*10));
         }
+        
+        if (balon.getY() < 0){
+            balon.setY(0);
+        }else if((balon.getY()+ balon.getWidth()) > height && height != 0){
+            balon.setY(height- balon.getWidth());
+        }else {
+            balon.setY(balon.getY()+(rotationSensorReading[1]*10));
+        }
+
+        if (balon.getX() + balon.getWidth() -15 >= port.getX() && balon.getX() - 15 <= port.getX() + port.getWidth()){
+            if (balon.getY() + 15 >= port.getY() && balon.getY() + 15 <= port.getY() + port.getHeight()) {
+                goles2.setText(((Integer.parseInt(goles2.getText().toString()))+1)+"");
+                balon.setX(width/2);
+                balon.setY(height/2);
 
 
+            }
+        }
+        if (balon.getX() + balon.getWidth() - 15 >= port2.getX() && balon.getX() - 15 <= port2.getX() + port2.getWidth()){
+            if (balon.getY() + balon.getHeight() - 15 >= port2.getY() && balon.getY() - 15 <= port2.getY() + port2.getHeight()) {
+                goles.setText(((Integer.parseInt(goles.getText().toString()))+1)+"");
+                balon.setX(width/2);
+                balon.setY(height/2);
 
-       
 
+            }
+        }    
 
 
     }
